@@ -6,6 +6,7 @@ import Search from './components/tabbar/SearchContainer'
 import Shop from './components/tabbar/ShopCarContainer'
 import Home from './components/tabbar/HomeContainer'
 import NewsList from './components/news/NewsList'
+import NewsInfo from './components/news/NewsInfo'
 Vue.use(VueRouter)
 export default new VueRouter({
   routes: [{
@@ -32,8 +33,11 @@ export default new VueRouter({
   {
     path: '/home/newslist',
     component: NewsList
+  },
+  {
+    path: '/home/newsinfo:id',
+    component: NewsInfo
   }
-
   ],
   linkActiveClass: 'mui-active'
 })

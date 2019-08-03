@@ -57,30 +57,30 @@
   </div>
 </template>
 <script>
-import { Toast } from "mint-ui";
+import { Toast } from 'mint-ui'
 export default {
-  data() {
+  data () {
     return {
       Lunbolist: []
-    };
+    }
   },
-  created() {
-    this.getLunbo();
+  created () {
+    this.getLunbo()
   },
   methods: {
-    getLunbo() {
+    getLunbo () {
       this.$http
-        .get("api/getlunbo")
+        .get('api/getlunbo')
         .then(result => {
           if (result.body.status === 0) {
-            this.Lunbolist = result.body.message;
+            this.Lunbolist = result.body.message
           } else {
-            Toast("轮播图请求数据错误");
+            Toast('轮播图请求数据错误')
           }
-        });
+        })
     }
   }
-};
+}
 </script>
 <style scoped>
 .mint-swipe {
