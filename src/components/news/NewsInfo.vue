@@ -7,33 +7,33 @@
         </p>
         <hr>
         <div class="content" v-html="newsinfo.content"> </div>
-       <comment-box></comment-box>
+       <comment-box :id="id"></comment-box>
     </div>
 </template>
 <script>
 import comment from '../subcomponents/comment.vue'
 export default {
-    data(){
-        return {
-            id:this.$route.params.id,
-            newsinfo:{}
+  data () {
+    return {
+      id: this.$route.params.id,
+      newsinfo: {}
+    }
+  },
+  created () {
+    this.getNewsInfo()
+  },
+  methods: {
+    getNewsInfo () {
+      this.$http.get('api/getnew/' + this.id).then(res => {
+        if (res.body.status === 0) {
+          this.newsinfo = res.body.message[0]
         }
-    },
-    created(){
-        this.getNewsInfo()
-    },
-    methods:{
-        getNewsInfo(){
-            this.$http.get('api/getnew/'+this.id).then(res=>{
-                if(res.body.status===0){
-                    this.newsinfo=res.body.message[0]
-                }
-            })
-        }
-    },
-   components:{
-       "comment-box":comment
-   }
+      })
+    }
+  },
+  components: {
+    'comment-box': comment
+  }
 }
 </script>
 <style scoped>
@@ -53,4 +53,3 @@ export default {
     justify-content: space-between;
 }
 </style>
-
