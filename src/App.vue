@@ -1,7 +1,7 @@
 <template>
   <div class="app-containet">
     <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="Vue-cli TO Vue商城"></mt-header>
+    <mt-header fixed title="Vue-cli TO Vue商城" class="header-top"></mt-header>
     <!-- 中间 路由router-view区域  -->
     <transition>
       <router-view></router-view>
@@ -30,13 +30,16 @@
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
-<style scoped>
+<style lang="less" scoped>
 .app-containet {
   padding-top: 40px;
   padding-bottom: 50px;
   overflow-x: hidden;
+  .header-top {
+    z-index: 9999;
+  }
 }
 .v-enter {
   opacity: 0;

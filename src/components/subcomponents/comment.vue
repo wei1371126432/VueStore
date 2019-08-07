@@ -19,58 +19,58 @@
 </template>
 
 <script>
-import { Toast } from "mint-ui";
+import { Toast } from 'mint-ui'
 export default {
-  data() {
+  data () {
     return {
       pageIndex: 1,
       comments: [],
-      msg: ""
-    };
+      msg: ''
+    }
   },
-  created() {
-    this.getComments();
+  created () {
+    this.getComments()
   },
   methods: {
-    getComments() {
+    getComments () {
       this.$http
-        .get("api/getcomments/" + this.id + "?pageindex=" + this.pageIndex)
+        .get('api/getcomments/' + this.id + '?pageindex=' + this.pageIndex)
         .then(res => {
           if (res.body.status === 0) {
-            this.comments = this.comments.concat(res.body.message);
+            this.comments = this.comments.concat(res.body.message)
           }
-        });
+        })
     },
-    getMore() {
-      this.pageIndex++;
-      this.getComments();
+    getMore () {
+      this.pageIndex++
+      this.getComments()
     },
-    postComment() {
+    postComment () {
       if (this.msg.trim().length === 0) {
-        return Toast("评论内容不能为空！！！");
+        return Toast('评论内容不能为空！！！')
       }
       this.$http
-        .post("api/postcomment/" + this.$route.params.id, {
+        .post('api/postcomment/' + this.$route.params.id, {
           content: this.msg.trim()
         })
         .then(res => {
           if (res.body.status === 0) {
-            Toast("评论提交成功！！！");
+            Toast('评论提交成功！！！')
             let cmt = {
-              user_name: "",
+              user_name: '',
               add_time: Date.now(),
               content: this.msg
-            };
-            this.comments.unshift(cmt);
-            this.msg = "";
+            }
+            this.comments.unshift(cmt)
+            this.msg = ''
           } else {
-            Toast("评论提交失败！！！");
+            Toast('评论提交失败！！！')
           }
-        });
+        })
     }
   },
-  props: ["id"]
-};
+  props: ['id']
+}
 </script>
 
 <style lang="less" scoped>

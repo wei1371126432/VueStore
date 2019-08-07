@@ -27,13 +27,13 @@
           >
           <div class="mui-media-body">图片分享</div>
         </router-link></li>
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/goodslist">
           <img
             src="../../images/menu3.png"
             alt=""
           >
           <div class="mui-media-body">商品购买</div>
-        </a></li>
+        </router-link></li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
           <img
             src="../../images/menu4.png"
@@ -59,28 +59,28 @@
   </div>
 </template>
 <script>
-import { Toast } from "mint-ui";
+import { Toast } from 'mint-ui'
 export default {
-  data() {
+  data () {
     return {
       Lunbolist: []
-    };
+    }
   },
-  created() {
-    this.getLunbo();
+  created () {
+    this.getLunbo()
   },
   methods: {
-    getLunbo() {
-      this.$http.get("api/getlunbo").then(result => {
+    getLunbo () {
+      this.$http.get('api/getlunbo').then(result => {
         if (result.body.status === 0) {
-          this.Lunbolist = result.body.message;
+          this.Lunbolist = result.body.message
         } else {
-          Toast("轮播图请求数据错误");
+          Toast('轮播图请求数据错误')
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 <style scoped>
 .mint-swipe {

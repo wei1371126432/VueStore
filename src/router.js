@@ -8,6 +8,8 @@ import Home from './components/tabbar/HomeContainer'
 import NewsList from './components/news/NewsList'
 import NewsInfo from './components/news/NewsInfo'
 import PhotosList from './components/photos/PhotosList'
+import PhotoInfo from './components/photos/PhotoInfo'
+import GoodSList from './components/goods/GoodSList'
 Vue.use(VueRouter)
 export default new VueRouter({
   routes: [{
@@ -36,12 +38,20 @@ export default new VueRouter({
     component: NewsList
   },
   {
-    path: '/home/newsinfo:id',
+    path: '/home/newsinfo/:id',
     component: NewsInfo
   },
   {
     path: '/home/photoslist',
     component: PhotosList
+  },
+  {
+    path: '/home/photoinfo/:id',
+    component: PhotoInfo
+  },
+  {
+    path: '/home/goodslist',
+    component: GoodSList
   }
   ],
   linkActiveClass: 'mui-active'

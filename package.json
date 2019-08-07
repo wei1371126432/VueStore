@@ -5,7 +5,7 @@
   "author": "weixiaochao <1371126432@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --open",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --open ",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -19,7 +19,8 @@
     "moment": "^2.24.0",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue2-preview": "^1.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
