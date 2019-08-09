@@ -12,7 +12,7 @@
       :previewBoxStyle="{border: '1px solid #eee'}" :tapToClose="true" @close="closeHandler"
       @destroy="destroyHandler" />
     </div>
-    
+
     <!-- 图片内容 -->
     <div class="content" v-html="photoinfo.content">
 
@@ -27,14 +27,14 @@ export default {
   data () {
     return {
       list: [
-      ],//缩略图数组
+      ], // 缩略图数组
       id: this.$route.params.id,
       photoinfo: {}
     }
   },
   created () {
-    this.getPhotoInfO();
-    this.getThumbs();
+    this.getPhotoInfO()
+    this.getThumbs()
   },
   methods: {
     getPhotoInfO () {
@@ -47,12 +47,12 @@ export default {
     getThumbs () {
       this.$http.get('api/getthumimages/' + this.id).then(res => {
         if (res.body.status === 0) {
-          //循环图片的每个数据，补全图片的宽和高
+          // 循环图片的每个数据，补全图片的宽和高
           res.body.message.forEach(item => {
-            item.w=600;
-            item.h=400;
+            item.w = 600
+            item.h = 400
           })
-          this.list=res.body.message
+          this.list = res.body.message
         }
       })
     },

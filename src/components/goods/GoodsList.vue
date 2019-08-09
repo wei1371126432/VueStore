@@ -1,6 +1,6 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in goodslist" :key="item.id">
+    <div class="goods-item" v-for="item in goodslist" :key="item.id" @click="goDetail(item.id)">
       <img :src="item.img_url">
       <h1 class="title">{{item.title}}</h1>
       <div class="info">
@@ -23,29 +23,32 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       pageindex: 1,
       goodslist: []
-    };
+    }
   },
-  created() {
-    this.getGoodList();
+  created () {
+    this.getGoodList()
   },
   methods: {
-    getGoodList() {
-      this.$http.get("api/getgoods?pageindex="+this.pageindex).then(res => {
+    getGoodList () {
+      this.$http.get('api/getgoods?pageindex=' + this.pageindex).then(res => {
         if (res.body.status === 0) {
-          this.goodslist = this.goodslist.concat(res.body.message);
+          this.goodslist = this.goodslist.concat(res.body.message)
         }
-      });
+      })
     },
-    getMore(){
-        this.pageindex++
-         this. getGoodList()
+    getMore () {
+      this.pageindex++
+      this.getGoodList()
+    },
+    goDetail (id) {
+      this.$router.push({ name: 'goodsinfo', params: { id}})
     }
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .goods-list {
@@ -97,5 +100,3 @@ export default {
   }
 }
 </style>
-
- 
