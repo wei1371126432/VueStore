@@ -50,95 +50,93 @@
   </div>
 </template>
 <script>
-import swiper from "../subcomponents/Swiper";
-import numbox from "../subcomponents/goodsinfo_numbox";
-import { constants } from 'crypto';
+import swiper from '../subcomponents/Swiper'
+import numbox from '../subcomponents/goodsinfo_numbox'
 export default {
-  data() {
+  data () {
     return {
-      id: this.$route.params.id,//获取路由参
-      lunbotu: [],//获取轮播图
-      goodsinfo: {},//获取商品信息
-      ballFlag: false, //控制小球隐藏和显示的变量
-      selectedCount:1
-    };
+      id: this.$route.params.id, // 获取路由参
+      lunbotu: [], // 获取轮播图
+      goodsinfo: {}, // 获取商品信息
+      ballFlag: false, // 控制小球隐藏和显示的变量
+      selectedCount: 1
+    }
   },
-  created() {
-    this.getLunbotu();
-    this.getGoodsInfo();
+  created () {
+    this.getLunbotu()
+    this.getGoodsInfo()
   },
   methods: {
-    getLunbotu() {
+    getLunbotu () {
       // 获取轮播图属性
-      this.$http.get("api/getthumimages/" + this.id).then(res => {
+      this.$http.get('api/getthumimages/' + this.id).then(res => {
         if (res.body.status === 0) {
           res.body.message.forEach(item => {
-            item.img = item.src;
-          });
-          this.lunbotu = res.body.message;
+            item.img = item.src
+          })
+          this.lunbotu = res.body.message
         }
-      });
+      })
     },
-    getGoodsInfo() {
+    getGoodsInfo () {
       // 获取商品参数
-      this.$http.get("api/goods/getinfo/" + this.id).then(res => {
+      this.$http.get('api/goods/getinfo/' + this.id).then(res => {
         if (res.body.status === 0) {
-          this.goodsinfo = res.body.message[0];
+          this.goodsinfo = res.body.message[0]
         }
-      });
+      })
     },
-    goDesc(id) {
+    goDesc (id) {
       // 商品图文详情
-      this.$router.push({ name: "goodsdesc", params: { id } });
+      this.$router.push({ name: 'goodsdesc', params: { id } })
     },
-    goComment(id) {
+    goComment (id) {
       // 商品评论详情
-      this.$router.push({ name: "goodscomment", params: { id } });
+      this.$router.push({ name: 'goodscomment', params: { id } })
     },
-    addToShopCar() {
-      //添加购物车的函数
-      this.ballFlag = !this.ballFlag;
-      //拼接出要加入到购物车当中的对象
-      var goodsinfo={
-        id:this.id,
-        count:this.selectedCount,
-        price:this.goodsinfo.sell_price,
-        selected:true
-      };
-      this.$store.commit('addToCar',goodsinfo)
-    },
-    beforeEnter(el) {
-      el.style.transform = "translate(0,0)";
-    },
-    enter(el, done) {
-      //获取小球在页面中的位置
-      const ballPosition=this.$refs.ball.getBoundingClientRect();
-      const badgePosition=document.getElementById('badge').getBoundingClientRect();
-      const xDist=badgePosition.left-ballPosition.left;
-      const yDist=badgePosition.top-ballPosition.top;
-      el.offsetWidth;
-      el.style.transform = `translate(${xDist}px, ${yDist}px)`;
-      el.style.transition = "all 0.5s ease";
-      done();
-    }, 
-    afterEnter(el) {
-      this.ballFlag = !this.ballFlag;
-    },
-    getSelectedCount(count){
-      // 获取numbox的数量到购物车
-      if(count>this.goodsinfo.stock_quantity){
-        this.selectedCount=this.goodsinfo.stock_quantity
+    addToShopCar () {
+      // 添加购物车的函数
+      this.ballFlag = !this.ballFlag
+      // 拼接出要加入到购物车当中的对象
+      var goodsinfo = {
+        id: this.id,
+        count: this.selectedCount,
+        price: this.goodsinfo.sell_price,
+        selected: true
       }
-      else{
-         this.selectedCount=count
-      } 
+      this.$store.commit('addToCar', goodsinfo)
+    },
+    beforeEnter (el) {
+      el.style.transform = 'translate(0,0)'
+    },
+    enter (el, done) {
+      // 获取小球在页面中的位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect()
+      const badgePosition = document.getElementById('badge').getBoundingClientRect()
+      const xDist = badgePosition.left - ballPosition.left
+      const yDist = badgePosition.top - ballPosition.top
+      el.offsetWidth
+      el.style.transform = `translate(${xDist}px, ${yDist}px)`
+      el.style.transition = 'all 0.5s ease'
+      done()
+    },
+    afterEnter (el) {
+      this.ballFlag = !this.ballFlag
+    },
+    getSelectedCount (count) {
+      // 获取numbox的数量到购物车
+      if (count > this.goodsinfo.stock_quantity) {
+        this.selectedCount = this.goodsinfo.stock_quantity
+      } else {
+        this.selectedCount = count
+      }
     }
   },
   components: {
     swiper,
     numbox
   }
-};
+}
 </script>
 <style lang="less" scoped>
 .goodsinfo-container {
