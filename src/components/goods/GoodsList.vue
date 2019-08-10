@@ -18,37 +18,37 @@
         </p>
       </div>
     </div>
-     <mt-button type="primary" size="large" plain @click="getMore">加载更多</mt-button>
+    <mt-button type="primary" size="large" plain @click="getMore">加载更多</mt-button>
   </div>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       pageindex: 1,
       goodslist: []
-    }
+    };
   },
-  created () {
-    this.getGoodList()
+  created() {
+    this.getGoodList();
   },
   methods: {
-    getGoodList () {
-      this.$http.get('api/getgoods?pageindex=' + this.pageindex).then(res => {
+    getGoodList() {
+      this.$http.get("api/getgoods?pageindex=" + this.pageindex).then(res => {
         if (res.body.status === 0) {
-          this.goodslist = this.goodslist.concat(res.body.message)
+          this.goodslist = this.goodslist.concat(res.body.message);
         }
-      })
+      });
     },
-    getMore () {
-      this.pageindex++
-      this.getGoodList()
+    getMore() {
+      this.pageindex++;
+      this.getGoodList();
     },
-    goDetail (id) {
-      this.$router.push({ name: 'goodsinfo', params: { id}})
+    goDetail(id) {
+      this.$router.push({ name: "goodsinfo", params: { id } });
     }
   }
-}
+};
 </script>
 <style lang="less" scoped>
 .goods-list {

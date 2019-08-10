@@ -9,12 +9,12 @@
 </template>
 <script>
 export default {
-    props:['LunboList','isfull']
-};
+  props: ['LunboList', 'isfull']
+}
 </script>
 <style lang="less" scoped>
 .mint-swipe {
-    text-align: center; 
+    text-align: center;
   height: 200px;
 }
 .mint-swipe-item img {
@@ -25,5 +25,3 @@ export default {
 }
 
 </style>
-
-

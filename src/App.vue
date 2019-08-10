@@ -18,10 +18,10 @@
       </router-link>
       <router-link class="mui-tab-item-wxc" to="/shopcar">
         <span class="mui-icon mui-icon-contact">
-          <span class="mui-badge">0</span>
+          <span class="mui-badge"  id="badge">{{this.$store.getters.getAllCount}}</span>
         </span>
         <span class="mui-tab-label">购物车</span>
-      </router-link>
+      </router-link> 
       <router-link class="mui-tab-item-wxc" to="/search">
         <span class="mui-icon mui-icon-search"></span>
         <span class="mui-tab-label">搜索</span>

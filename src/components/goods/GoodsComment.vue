@@ -4,14 +4,13 @@
   </div>
 </template>
 <script>
-import comment from "../subcomponents/comment";
+import comment from '../subcomponents/comment'
 export default {
-  data() {
-    return {};
+  data () {
+    return {}
   },
   components: {
     comment
   }
-};
+}
 </script>
-

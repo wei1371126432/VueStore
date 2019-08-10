@@ -38,30 +38,30 @@
   </div>
 </template>
 <script>
-import { Toast } from "mint-ui";
-import swiper from "../subcomponents/Swiper";
+import { Toast } from 'mint-ui'
+import swiper from '../subcomponents/Swiper'
 export default {
-  data() {
+  data () {
     return {
       Lunbolist: []
-    };
+    }
   },
-  created() {
-    this.getLunbo();
+  created () {
+    this.getLunbo()
   },
   methods: {
-    getLunbo() {
-      this.$http.get("api/getlunbo").then(result => {
+    getLunbo () {
+      this.$http.get('api/getlunbo').then(result => {
         if (result.body.status === 0) {
-          this.Lunbolist = result.body.message;
+          this.Lunbolist = result.body.message
         } else {
-          Toast("轮播图请求数据错误");
+          Toast('轮播图请求数据错误')
         }
-      });
+      })
     }
   },
   components: {swiper}
-};
+}
 </script>
 <style scoped>
 .mui-grid-view.mui-grid-9 {

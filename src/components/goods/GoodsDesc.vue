@@ -8,25 +8,25 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       id: this.$route.params.id,
       goodsdesc: {}
-    };
+    }
   },
-  created() {
-    this.getGoodsDesc();
+  created () {
+    this.getGoodsDesc()
   },
   methods: {
-    getGoodsDesc() {
-      this.$http.get("api/goods/getdesc/" + this.id).then(res => {
+    getGoodsDesc () {
+      this.$http.get('api/goods/getdesc/' + this.id).then(res => {
         if (res.body.status === 0) {
-          this.goodsdesc = res.body.message[0];
+          this.goodsdesc = res.body.message[0]
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 <style lang="less">
 .goodsdesc-container{
@@ -37,10 +37,9 @@ export default {
         text-align: center;
         margin:15px 0;    }
         .content{
-            img{width: 100%;}
+            img{width: 100%;
+            }
         }
+       
 }
 </style>
-
-
-
